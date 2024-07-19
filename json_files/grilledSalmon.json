@@ -1,0 +1,29 @@
+{
+    "RecipeID": 1,
+    "RecipeName": "Grilled Salmon with Lemon",
+    "GenerateName": false,
+    "RequiredItems": [
+      {
+        "ItemID": 10,
+        "ItemAmount": 1
+      }
+    ],
+    "HasRequiredItemTypes": true,
+    "RequiredItemTypes": [
+      {
+        "ItemType": "Fish",
+        "ItemAmount": 1
+      },
+      {
+        "ItemType": "Lemon",
+        "ItemAmount": 1
+      }
+    ],
+    "RecipeOutputItems": [
+      {
+        "ItemID": 11,
+        "ItemAmount": 1
+      }
+    ],
+    "CraftedAt": ["Player"]
+  }

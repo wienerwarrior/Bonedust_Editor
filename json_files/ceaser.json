@@ -1,0 +1,33 @@
+{
+    "RecipeID": 10,
+    "RecipeName": "Caesar Salad",
+    "GenerateName": false,
+    "RequiredItems": [
+      {
+        "ItemID": 90,
+        "ItemAmount": 1
+      }
+    ],
+    "HasRequiredItemTypes": true,
+    "RequiredItemTypes": [
+      {
+        "ItemType": "Lettuce",
+        "ItemAmount": 1
+      },
+      {
+        "ItemType": "Croutons",
+        "ItemAmount": 1
+      },
+      {
+        "ItemType": "Parmesan",
+        "ItemAmount": 1
+      }
+    ],
+    "RecipeOutputItems": [
+      {
+        "ItemID": 91,
+        "ItemAmount": 1
+      }
+    ],
+    "CraftedAt": ["Player"]
+  }

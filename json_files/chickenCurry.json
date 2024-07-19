@@ -1,0 +1,33 @@
+{
+    "RecipeID": 6,
+    "RecipeName": "Chicken Curry",
+    "GenerateName": false,
+    "RequiredItems": [
+      {
+        "ItemID": 50,
+        "ItemAmount": 1
+      }
+    ],
+    "HasRequiredItemTypes": true,
+    "RequiredItemTypes": [
+      {
+        "ItemType": "Chicken",
+        "ItemAmount": 2
+      },
+      {
+        "ItemType": "Curry Powder",
+        "ItemAmount": 1
+      },
+      {
+        "ItemType": "Coconut Milk",
+        "ItemAmount": 1
+      }
+    ],
+    "RecipeOutputItems": [
+      {
+        "ItemID": 51,
+        "ItemAmount": 1
+      }
+    ],
+    "CraftedAt": ["Pot"]
+  }
