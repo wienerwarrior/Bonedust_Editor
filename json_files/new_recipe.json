@@ -1,0 +1,22 @@
+{
+    "RecipeID": 1,
+    "RecipeName": "Tyler_Food",
+    "GenerateName": true,
+    "RequiredItems": [
+        {
+            "ItemID": 5,
+            "ItemAmount": 1
+        }
+    ],
+    "HasRequiredItemTypes": true,
+    "RequiredItemTypes": null,
+    "RecipeOutputItems": [
+        {
+            "ItemID": 5,
+            "ItemAmount": 1
+        }
+    ],
+    "CraftedAt": [
+        "Player"
+    ]
+}
