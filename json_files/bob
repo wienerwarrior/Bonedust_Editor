@@ -1,0 +1,22 @@
+{
+    "RecipeID": 1,
+    "RecipeName": "bob",
+    "GenerateName": false,
+    "RequiredItems": [
+        {
+            "ItemID": 1,
+            "ItemAmount": 1
+        }
+    ],
+    "HasRequiredItemTypes": true,
+    "RequiredItemTypes": false,
+    "RecipeOutputItems": [
+        {
+            "ItemID": 1,
+            "ItemAmount": 1
+        }
+    ],
+    "CraftedAt": [
+        "Player"
+    ]
+}
