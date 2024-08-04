@@ -4,17 +4,19 @@ from tkinter import messagebox
 from tkinter import filedialog
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-import json_reader
 from json_reader import JsonReader
+import os
 
 window = ttk.Window(themename="darkly")
 reader = JsonReader()
+
 
 def list_json_files():
     file_list = reader.get_file_list()
     listbox.delete(0, END)  # Clear the current list
     for file in file_list:
         listbox.insert(END, file)
+
 
 def select_folder():
     path = filedialog.askdirectory(title="Select Folder")
@@ -23,6 +25,55 @@ def select_folder():
         folder_path_label.config(text=path)
         list_json_files()
     return path
+
+print(f"Current working directory: {os.getcwd()}")
+print(f"Files in directory: {os.listdir(os.getcwd())}")
+
+def load_recipe():
+    try:
+        selected_index = listbox.curselection()
+        if not selected_index:
+            messagebox.showerror("Error", "No file selected.")
+            return
+        file_name = listbox.get(selected_index)
+        full_path = reader.path / file_name
+        with open(full_path, "r") as json_files:
+            if json_files.read(1):
+                json_files.seek(0)
+                data = json.load(json_files)
+                load_entry_fields_With_loaded_data(data)
+                print(data)  # or update your UI with the loaded data
+            else:
+                messagebox.showwarning("Warning", f"Skipping empty file: {full_path}")
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+
+
+# Debugging: Print current working directory and files in it
+print(f"Current working directory: {os.getcwd()}")
+print(f"Files in directory: {os.listdir(os.getcwd())}")
+
+
+
+def load_entry_fields_With_loaded_data(data):
+    id_entry.delete(0, END)
+    id_entry.insert(0, data.get('RecipeID', ""))
+
+    recipe_name_entry.delete(0, END)
+    recipe_name_entry.insert(0, data.get('RecipeName', ""))
+
+    generate_name_bool.set("true" if data.get("GenerateName") else "false")
+
+    if "RequiredItems" in data and data["RequiredItems"]:
+        item = data["RequiredItems"][0]
+        item_id_entry.delete(0, tk.END)
+        item_id_entry.insert(0, item.get("ItemID", ""))
+
+        item_amount_entry.delete(0, tk.END)
+        item_amount_entry.insert(0, item.get("ItemAmount", ""))
+
+    has_required_item_types_bool.set("true" if data.get("HasRequiredItemTypes") else "false")
+
 
 def create_recipe_json():
     try:
@@ -51,16 +102,18 @@ def create_recipe_json():
         messagebox.showerror("Input Error", "Please ensure all numerical fields are correctly filled.")
         return None
 
+
 def save_recipe():
     recipe = create_recipe_json()
     if recipe:
         path = select_folder()
         if path:
-            file_path = f"{path}/new_recipe.json"
+            file_path = f"{path}/{recipe_name_entry.get()}.json"
             with open(file_path, 'w') as new_recipe:
                 json.dump(recipe, new_recipe, indent=4)
             messagebox.showinfo("Recipe Saved", "Recipe has been saved successfully!")
             print(recipe)
+
 
 if __name__ == "__main__":
     file_list = reader.get_file_list()
@@ -119,7 +172,7 @@ listbox.config(yscrollcommand=scrollbar.set)
 save_btn = ttk.Button(window, text="Save", command=save_recipe, bootstyle=SUCCESS)
 save_btn.grid(column=1, row=1, padx=10, pady=10, sticky="sw")
 
-load_btn = ttk.Button(window, text="Load", command=select_folder, bootstyle=SUCCESS)
+load_btn = ttk.Button(window, text="Load", command=load_recipe, bootstyle=SUCCESS)
 load_btn.grid(column=1, row=2, padx=10, pady=10, sticky="sw")
 
 select_folder_btn = ttk.Button(window, text="Select Folder", command=select_folder, bootstyle=SUCCESS)
